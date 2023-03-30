@@ -1,0 +1,21 @@
+trigger:
+- main
+
+pool:
+  vmImage: ubuntu-latest
+
+variables:
+- template: \Pipeline\Variables\GenericVariables.yml
+
+stages:
+- template: Deployment.yml
+  parameters:
+    EnvironmentName: 'eudev3' 
+
+- template: RunTests.yml
+  parameters:
+    EnvironmentName: 'eudev3' 
+
+- template: Deployment.yml
+  parameters: 
+    EnvironmentName: 'euprod2'
